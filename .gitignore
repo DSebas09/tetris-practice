@@ -1,0 +1,8 @@
+# Logs
+*.log
+
+# Archivos temporales de editores
+*.swp
+*.swo
+
+/.idea/
