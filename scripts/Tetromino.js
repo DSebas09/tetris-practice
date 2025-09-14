@@ -207,4 +207,45 @@ const TetrominoType = {
     }
 }
 
-export { Tetromino, Position, TetrominoType };
+
+class TetrominoBag {
+    constructor(canvas, cellSize) {
+        this.canvas = canvas;
+        this.cellSize = cellSize;
+        this.bag = []
+    }
+
+    fillBag() {
+        const tetrominosTypes = [
+            TetrominoType.T,
+            TetrominoType.Z,
+            TetrominoType.S,
+            TetrominoType.O,
+            TetrominoType.L,
+            TetrominoType.I,
+            TetrominoType.J,
+        ]
+        this.bag.length = 0;
+
+        tetrominosTypes.forEach((type) => {
+            this.bag.push(new Tetromino(this.canvas, this.cellSize, type.shapes, type.initPosition, type.id));
+        })
+
+        // Apply Fisher–Yate algorithm
+        for(let i = this.bag.length - 1; i > 0; i--){
+            let j = Math.floor(Math.random() * (i + 1));
+            [this.bag[i], this.bag[j]] = [this.bag[j], this.bag[i]];
+        }
+    }
+
+    nextTetromino() {
+        if (this.bag.length === 0) {
+            this.fillBag();
+        }
+
+        return this.bag.pop();
+    }
+}
+
+
+export { Tetromino, Position, TetrominoType, TetrominoBag };
