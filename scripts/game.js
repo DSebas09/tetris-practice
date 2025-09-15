@@ -7,12 +7,26 @@ export class Game {
         this.tetrominoBag = new TetrominoBag(canvas, cellSize);
         this.currentTetromino = this.tetrominoBag.nextTetromino();
         this.keyboard();
+
+        this.lastTime = 0;
     }
 
     update() {
+        let currentTime = Date.now();
+        let deltaTime = currentTime - this.lastTime;
+
+        if (deltaTime >= 1000) {
+            this.automoveTetrominoDown();
+            this.lastTime = currentTime;
+        }
+
         this.boardTetris.draw();
         this.currentTetromino.draw(this.boardTetris);
 
+    }
+
+    automoveTetrominoDown() {
+        this.moveTetrominoDown();
     }
 
     blockedTetromino() {
