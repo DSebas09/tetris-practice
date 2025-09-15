@@ -98,6 +98,8 @@ export class Game {
             this.boardTetris.matriz[tetrominoPositions[i].row][tetrominoPositions[i].column] = this.currentTetromino.id;
         }
 
+        this.boardTetris.clearFullRows();
+
         if (this.boardTetris.gameOver()){
             return true;
         }
