@@ -32,7 +32,11 @@ export class Game {
     }
 
     automoveTetrominoDown() {
-        this.moveTetrominoDown();
+        this.currentTetromino.move(1, 0);
+        if(this.blockedTetromino()) {
+            this.currentTetromino.move(-1, 0);
+            this.placeTetromino();
+        }
     }
 
     blockedTetromino() {
@@ -85,6 +89,20 @@ export class Game {
         }
         if (this.blockedTetromino()) {
             this.rotationTetrominoCW();
+        }
+    }
+
+    placeTetromino() {
+        const tetrominoPositions = this.currentTetromino.currentPositions();
+        for (let i = 0; i < tetrominoPositions.length; i++) {
+            this.boardTetris.matriz[tetrominoPositions[i].row][tetrominoPositions[i].column] = this.currentTetromino.id;
+        }
+
+        if (this.boardTetris.gameOver()){
+            return true;
+        }
+        else {
+            this.currentTetromino = this.tetrominoBag.nextTetromino();
         }
     }
 
