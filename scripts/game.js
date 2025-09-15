@@ -9,6 +9,12 @@ export class Game {
         this.keyboard();
     }
 
+    update() {
+        this.boardTetris.draw();
+        this.currentTetromino.draw(this.boardTetris);
+
+    }
+
     blockedTetromino() {
         const tetrominoPositions = this.currentTetromino.currentPositions();
         for (let i = 0; i < tetrominoPositions.length; i++) {
