@@ -6,6 +6,7 @@ export class Game {
         this.boardTetris = new BoardTetris(canvas, rows, cols, cellSize, space);
         this.tetrominoBag = new TetrominoBag(canvas, cellSize);
         this.currentTetromino = this.tetrominoBag.nextTetromino();
+        this.keyboard();
     }
 
     blockedTetromino() {
@@ -61,4 +62,20 @@ export class Game {
         }
     }
 
+    keyboard(){
+        window.addEventListener("keydown", (evt) => {
+            if (evt.key === "ArrowLeft") {
+                this.moveTetrominoLeft();
+            }
+            if (evt.key === "ArrowRight") {
+                this.moveTetrominoRight();
+            }
+            if (evt.key === "ArrowUp") {
+                this.rotationTetrominoCW();
+            }
+            if (evt.key === "ArrowDown") {
+                this.moveTetrominoDown();
+            }
+        })
+    }
 }
