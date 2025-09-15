@@ -6,7 +6,7 @@ class Position {
 }
 
 class Tetromino {
-    constructor(canvas, cellSize, shapes, initPosition, id) {
+    constructor(canvas, cellSize, shapes = [], initPosition = new Position(), id = 1) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
         this.cellSize = cellSize;
@@ -136,6 +136,7 @@ class Tetromino {
         this.position = new Position(this.initPosition.row, this.initPosition.column);
     }
 }
+
 
 const TetrominoType = {
     T: {
