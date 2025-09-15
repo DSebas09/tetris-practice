@@ -6,7 +6,7 @@ export class BoardTetris extends Grid {
     }
 
     isInside(row, col){
-        return row > 0 && row < this.rows && col > 0 && col < this.cols;
+        return row >= 0 && row < this.rows && col >= 0 && col < this.cols;
     }
 
     isEmpty(row, col){
