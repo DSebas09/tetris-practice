@@ -9,19 +9,24 @@ export class Game {
         this.keyboard();
 
         this.lastTime = 0;
+        this.lastTime2 = 0;
     }
 
     update() {
         let currentTime = Date.now();
         let deltaTime = currentTime - this.lastTime;
+        let deltaTime2 = currentTime - this.lastTime2;
 
         if (deltaTime >= 1000) {
             this.automoveTetrominoDown();
             this.lastTime = currentTime;
         }
 
-        this.boardTetris.draw();
-        this.currentTetromino.draw(this.boardTetris);
+        if (deltaTime2 >= 50) {
+            this.boardTetris.draw();
+            this.currentTetromino.draw(this.boardTetris);
+            this.lastTime2 = currentTime;
+        }
 
     }
 
