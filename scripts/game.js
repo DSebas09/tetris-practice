@@ -7,6 +7,7 @@ export class Game {
         this.tetrominoBag = new TetrominoBag(canvas, cellSize);
         this.currentTetromino = this.tetrominoBag.nextTetromino();
         this.keyboard();
+        this.keys = {up: false, down: false};
 
         this.lastTime = 0;
         this.lastTime2 = 0;
@@ -95,11 +96,21 @@ export class Game {
             if (evt.key === "ArrowRight") {
                 this.moveTetrominoRight();
             }
-            if (evt.key === "ArrowUp") {
+            if (evt.key === "ArrowUp" && !this.keys.up) {
                 this.rotationTetrominoCW();
+                this.keys.up = true;
             }
             if (evt.key === "ArrowDown") {
                 this.moveTetrominoDown();
+                this.keys.down = true;
+            }
+        });
+        window.addEventListener("keyup", (evt) => {
+            if (evt.key === "ArrowUp") {
+                this.keys.up = false;
+            }
+            if (evt.key === "ArrowDown") {
+                this.keys.down = false;
             }
         })
     }
