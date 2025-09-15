@@ -10,7 +10,7 @@ export class BoardTetris extends Grid {
     }
 
     isEmpty(row, col){
-        return this.matriz[row][col] === 0 && this.isInside(row, col);
+        return this.isInside(row, col) && this.matriz[row][col] === 0;
     }
 
     isRowFull(row){
